@@ -316,7 +316,7 @@
                     <ContentPresenter x:Name="PrimaryWindowContent" Content="{Binding Content, RelativeSource={Binding DataContext}}" PointerEntered="PrimaryWindowContent_PointerEntered" CornerRadius="0,0,7,7"/>
                 </Grid>
                 <Border x:Name="TBAccent" VerticalAlignment="Top" Height="35" Background="{ThemeResource AppBarBackgroundThemeBrush}" CornerRadius="7,7,0,0"/>
-                <Border x:Name="TBar" PointerPressed="PrimaryWindow_PointerPressed" PointerReleased="PrimaryWindow_PointerReleased" PointerMoved="PrimaryWindow_PointerMoved" VerticalAlignment="Top" Height="35" DoubleTapped="TBar_DoubleTapped" CornerRadius="7,7,0,0" PointerEntered="TBar_PointerEntered" PointerExited="TBar_PointerExited">
+                <Border x:Name="TBar"  CornerRadius="7,7,0,0">
                     <Border.Background>
                         <AcrylicBrush x:Name="ABrush"/>
                     </Border.Background>

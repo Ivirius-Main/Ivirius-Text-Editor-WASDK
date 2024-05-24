@@ -1236,12 +1236,12 @@ namespace Ivirius.UI.Windowing
 
         private void RSide_PointerEntered(object sender, PointerRoutedEventArgs e)
         {
-            if (IsMaximizeRestoreButtonEnabled == true && IsMaximized == false) App.Window.CoreWindow.PointerCursor = new CoreCursor(CoreCursorType.SizeWestEast, e.Pointer.PointerId);
+            //if (IsMaximizeRestoreButtonEnabled == true && IsMaximized == false) App.Window.CoreWindow.PointerCursor = new CoreCursor(CoreCursorType.SizeWestEast, e.Pointer.PointerId);
         }
 
         private void RSide_PointerExited(object sender, PointerRoutedEventArgs e)
         {
-            if (displayResizer != true) App.Window.CoreWindow.PointerCursor = new CoreCursor(CoreCursorType.Arrow, e.Pointer.PointerId);
+            //if (displayResizer != true) App.Window.CoreWindow.PointerCursor = new CoreCursor(CoreCursorType.Arrow, e.Pointer.PointerId);
         }
 
         private void RSide_PointerMoved(object sender, PointerRoutedEventArgs e)
@@ -1276,19 +1276,19 @@ namespace Ivirius.UI.Windowing
 
         private void RSide_PointerReleased(object sender, PointerRoutedEventArgs e)
         {
-            (sender as Border).ReleasePointerCapture(e.Pointer);
-            displayResizer = false;
-            if (displayResizer != true) App.Window.CoreWindow.PointerCursor = new CoreCursor(CoreCursorType.Arrow, e.Pointer.PointerId);
+            //(sender as Border).ReleasePointerCapture(e.Pointer);
+            //displayResizer = false;
+            //if (displayResizer != true) App.Window.CoreWindow.PointerCursor = new CoreCursor(CoreCursorType.Arrow, e.Pointer.PointerId);
         }
 
         private void DSide_PointerEntered(object sender, PointerRoutedEventArgs e)
         {
-            if (IsMaximizeRestoreButtonEnabled == true && IsMaximized == false) App.Window.CoreWindow.PointerCursor = new CoreCursor(CoreCursorType.SizeNorthSouth, e.Pointer.PointerId);
+            //if (IsMaximizeRestoreButtonEnabled == true && IsMaximized == false) App.Window.CoreWindow.PointerCursor = new CoreCursor(CoreCursorType.SizeNorthSouth, e.Pointer.PointerId);
         }
 
         private void DSide_PointerExited(object sender, PointerRoutedEventArgs e)
         {
-            if (displayResizer != true) App.Window.CoreWindow.PointerCursor = new CoreCursor(CoreCursorType.Arrow, e.Pointer.PointerId);
+            //if (displayResizer != true) App.Window.CoreWindow.PointerCursor = new CoreCursor(CoreCursorType.Arrow, e.Pointer.PointerId);
         }
 
         private void DSide_PointerMoved(object sender, PointerRoutedEventArgs e)

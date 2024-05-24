@@ -44,9 +44,6 @@ namespace Ivirius_Text_Editor
                 titleBar.ExtendsContentIntoTitleBar = true;
                 AppTitleBar.Loaded += AppTitleBar_Loaded;
                 AppTitleBar.SizeChanged += AppTitleBar_SizeChanged;
-
-                BackButton.Click += OnBackClicked;
-                BackButton.Visibility = Visibility.Collapsed;
             }
             else
             {
@@ -59,7 +56,7 @@ namespace Ivirius_Text_Editor
             }
         }
 
-        public Button BackButton => AppTitleBarBackButton;
+        
 
         private void AppTitleBar_Loaded(object sender, RoutedEventArgs e)
         {
@@ -69,14 +66,6 @@ namespace Ivirius_Text_Editor
             if (AppWindowTitleBar.IsCustomizationSupported())
             {
                 SetDragRegionForCustomTitleBar(m_AppWindow);
-            }
-        }
-
-        private void OnBackClicked(object sender, RoutedEventArgs e)
-        {
-            if (PageFrame.CanGoBack)
-            {
-                PageFrame.GoBack();
             }
         }
 
