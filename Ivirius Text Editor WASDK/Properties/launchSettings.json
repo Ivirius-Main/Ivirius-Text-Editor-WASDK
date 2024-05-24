@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "Ivirius_Text_Editor (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Profile 1": {
+      "commandName": "Project"
+    },
+    "Profile 2": {
+      "commandName": "Project"
+    }
+  }
+}

@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities" IgnorableNamespaces="uap mp rescap">
+  <Identity Name="464IviriusCompany.IviriusTextEditor" Publisher="CN=jpb" Version="3.5.0.0" />
+  <Properties>
+    <DisplayName>Ivirius Text Editor</DisplayName>
+    <PublisherDisplayName>Ivirius Company</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+  </Properties>
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.0.0" MaxVersionTested="10.0.22621.0" />
+  </Dependencies>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="$targetentrypoint$">
+      <uap:VisualElements DisplayName="Ivirius Text Editor" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="Rich text editing tool similar to WordPad" BackgroundColor="transparent">
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square71x71Logo="Assets\SmallTile.png" Square310x310Logo="Assets\LargeTile.png" ShortName="Ivirius Text Editor">
+          <uap:ShowNameOnTiles>
+            <uap:ShowOn Tile="square150x150Logo" />
+            <uap:ShowOn Tile="wide310x150Logo" />
+            <uap:ShowOn Tile="square310x310Logo" />
+          </uap:ShowNameOnTiles>
+        </uap:DefaultTile>
+        <uap:SplashScreen Image="Assets\SplashScreen.png" a:Optional="true" xmlns:a="http://schemas.microsoft.com/appx/manifest/uap/windows10/5" BackgroundColor="transparent" />
+        <uap:InitialRotationPreference>
+          <uap:Rotation Preference="landscape" />
+          <uap:Rotation Preference="landscapeFlipped" />
+        </uap:InitialRotationPreference>
+      </uap:VisualElements>
+      <Extensions>
+        <uap:Extension Category="windows.fileTypeAssociation">
+          <uap:FileTypeAssociation Name="richtextfile">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.rtf</uap:FileType>
+              <uap:FileType>.ivrtext</uap:FileType>
+              <uap:FileType>.richtxtformat</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap:DisplayName>Rich Text File</uap:DisplayName>
+            <uap:InfoTip>Rich Text File</uap:InfoTip>
+            <uap:EditFlags OpenIsSafe="true" />
+            <uap:Logo>Assets\AppIcons\02.png</uap:Logo>
+          </uap:FileTypeAssociation>
+        </uap:Extension>
+        <uap:Extension Category="windows.protocol">
+          <uap:Protocol Name="ivirius-ivreditor">
+            <uap:DisplayName>Ivirius Text Editor</uap:DisplayName>
+          </uap:Protocol>
+        </uap:Extension>
+        <uap:Extension Category="windows.fileTypeAssociation">
+          <uap:FileTypeAssociation Name="legacyivrfile">
+            <uap:SupportedFileTypes>
+              <uap:FileType>.ivrnote</uap:FileType>
+              <uap:FileType>.rwhi</uap:FileType>
+            </uap:SupportedFileTypes>
+            <uap:EditFlags OpenIsSafe="true" />
+            <uap:DisplayName>Legacy Ivirius Text Editor File</uap:DisplayName>
+            <uap:InfoTip>Legacy Ivirius Text Editor File</uap:InfoTip>
+            <uap:Logo>Assets\AppIcons\LegacyFileIcon.png</uap:Logo>
+          </uap:FileTypeAssociation>
+        </uap:Extension>
+      </Extensions>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="internetClient" />
+    <rescap:Capability Name="confirmAppClose" />
+    <rescap:Capability Name="documentsLibrary" />
+    <uap:Capability Name="picturesLibrary" />
+    <rescap:Capability Name="runFullTrust" />
+  </Capabilities>
+</Package>

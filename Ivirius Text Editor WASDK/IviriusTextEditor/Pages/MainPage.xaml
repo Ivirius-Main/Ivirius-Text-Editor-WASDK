@@ -1,0 +1,842 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:IviriusWindowingToolkit="using:Ivirius.UI.Windowing"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Custom="using:Microsoft.UI.Xaml.Controls" 
+    xmlns:ToolkitControls="using:CommunityToolkit.WinUI.UI.Controls"
+    x:Name="MainPageComponent"
+    x:Class="IviriusTextEditor.Pages.MainPage"
+    mc:Ignorable="d"
+    SizeChanged="MainPageComponent_SizeChanged"
+    xmlns:primitiveContract7Present="using:Microsoft.UI.Xaml.Controls.Primitives?IsApiContractPresent(Windows.Foundation.UniversalApiContract,7)" xmlns:Strings="using:IviriusTextEditor.Languages">
+    <Page.Resources>
+        <Style x:Key="CaptionButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="{ThemeResource ButtonBackground}"/>
+            <Setter Property="BackgroundSizing" Value="OuterBorderEdge"/>
+            <Setter Property="Foreground" Value="{ThemeResource ButtonForeground}"/>
+            <Setter Property="BorderBrush" Value="{ThemeResource ButtonBorderBrush}"/>
+            <Setter Property="BorderThickness" Value="{ThemeResource ButtonBorderThemeThickness}"/>
+            <Setter Property="Padding" Value="{StaticResource ButtonPadding}"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}"/>
+            <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}"/>
+            <Setter Property="FocusVisualMargin" Value="-3"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <ContentPresenter x:Name="ContentPresenter" AutomationProperties.AccessibilityView="Raw" Background="{TemplateBinding Background}" BackgroundSizing="{TemplateBinding BackgroundSizing}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" ContentTemplate="{TemplateBinding ContentTemplate}" CornerRadius="{TemplateBinding CornerRadius}" Content="{TemplateBinding Content}" ContentTransitions="{TemplateBinding ContentTransitions}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal">
+                                        <Storyboard>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="PointerOver">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBackgroundPointerOver}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBorderBrushPointerOver}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonForegroundPointerOver}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBackgroundPressed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBorderBrushPressed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonForegroundPressed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Null}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Null}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonForegroundDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </ContentPresenter>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="DisabledButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="{ThemeResource ButtonBackground}"/>
+            <Setter Property="BackgroundSizing" Value="OuterBorderEdge"/>
+            <Setter Property="Foreground" Value="{ThemeResource ButtonForeground}"/>
+            <Setter Property="BorderBrush" Value="{ThemeResource ButtonBorderBrush}"/>
+            <Setter Property="BorderThickness" Value="{ThemeResource ButtonBorderThemeThickness}"/>
+            <Setter Property="Padding" Value="{StaticResource ButtonPadding}"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}"/>
+            <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}"/>
+            <Setter Property="FocusVisualMargin" Value="-3"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <ContentPresenter x:Name="ContentPresenter" AutomationProperties.AccessibilityView="Raw" Background="{TemplateBinding Background}" BackgroundSizing="{TemplateBinding BackgroundSizing}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" ContentTemplate="{TemplateBinding ContentTemplate}" CornerRadius="{TemplateBinding CornerRadius}" Content="{TemplateBinding Content}" ContentTransitions="{TemplateBinding ContentTransitions}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal">
+                                        <Storyboard>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="ContentPresenter"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="PointerOver">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBackgroundPointerOver}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBorderBrushPointerOver}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonForegroundPointerOver}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="ContentPresenter"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBackgroundPressed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBorderBrushPressed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonForegroundPressed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <PointerDownThemeAnimation Storyboard.TargetName="ContentPresenter"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Null}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Null}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonForegroundDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </ContentPresenter>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="CloseButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="{ThemeResource ButtonBackground}"/>
+            <Setter Property="BackgroundSizing" Value="OuterBorderEdge"/>
+            <Setter Property="Foreground" Value="{ThemeResource ButtonForeground}"/>
+            <Setter Property="BorderBrush" Value="{ThemeResource ButtonBorderBrush}"/>
+            <Setter Property="BorderThickness" Value="{ThemeResource ButtonBorderThemeThickness}"/>
+            <Setter Property="Padding" Value="{StaticResource ButtonPadding}"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}"/>
+            <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}"/>
+            <Setter Property="FocusVisualMargin" Value="-3"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <ContentPresenter x:Name="ContentPresenter" AutomationProperties.AccessibilityView="Raw" Background="{TemplateBinding Background}" BackgroundSizing="{TemplateBinding BackgroundSizing}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" ContentTemplate="{TemplateBinding ContentTemplate}" CornerRadius="{TemplateBinding CornerRadius}" Content="{TemplateBinding Content}" ContentTransitions="{TemplateBinding ContentTransitions}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal">
+                                        <Storyboard>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="ContentPresenter"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="PointerOver">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#FFFF0000"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Null}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#FFFFFFFF"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="ContentPresenter"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#FFD90000"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Null}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#FFFFFFFF"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBackgroundDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonBorderBrushDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonForegroundDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </ContentPresenter>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ProgressBarStyle1" TargetType="ProgressBar">
+            <Setter Property="Foreground" Value="{ThemeResource SystemControlHighlightAccentBrush}"/>
+            <Setter Property="Background" Value="{ThemeResource SystemControlBackgroundBaseLowBrush}"/>
+            <Setter Property="BorderThickness" Value="{ThemeResource ProgressBarBorderThemeThickness}"/>
+            <Setter Property="BorderBrush" Value="{ThemeResource SystemControlHighlightTransparentBrush}"/>
+            <Setter Property="Maximum" Value="100"/>
+            <Setter Property="MinHeight" Value="{ThemeResource ProgressBarThemeMinHeight}"/>
+            <Setter Property="IsTabStop" Value="False"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ProgressBar">
+                        <Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition From="Updating" To="Determinate">
+                                            <Storyboard>
+                                                <RepositionThemeAnimation FromHorizontalOffset="{Binding TemplateSettings.IndicatorLengthDelta, RelativeSource={RelativeSource Mode=TemplatedParent}}" TargetName="ProgressBarIndicator"/>
+                                            </Storyboard>
+                                        </VisualTransition>
+                                        <VisualTransition From="Paused" To="Determinate">
+                                            <Storyboard>
+                                                <DoubleAnimation Duration="0:0:0.25" Storyboard.TargetName="ProgressBarIndicator" To="1" Storyboard.TargetProperty="Opacity"/>
+                                            </Storyboard>
+                                        </VisualTransition>
+                                        <VisualTransition From="Indeterminate" To="Determinate">
+                                            <Storyboard>
+                                                <FadeInThemeAnimation TargetName="IndeterminateRoot"/>
+                                            </Storyboard>
+                                        </VisualTransition>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Determinate"/>
+                                    <VisualState x:Name="Updating"/>
+                                    <VisualState x:Name="Indeterminate">
+                                        <Storyboard RepeatBehavior="Forever">
+                                            <DoubleAnimation Duration="0:0:3.917" From="{Binding TemplateSettings.ContainerAnimationStartPosition, RelativeSource={RelativeSource Mode=TemplatedParent}}" Storyboard.TargetName="IndeterminateRoot" To="{Binding TemplateSettings.ContainerAnimationEndPosition, RelativeSource={RelativeSource Mode=TemplatedParent}}" Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)"/>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="E1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                                                <SplineDoubleKeyFrame KeyTime="0:0:1" KeySpline="0.4,0,0.6,1" Value="{Binding TemplateSettings.EllipseAnimationWellPosition, RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
+                                                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="{Binding TemplateSettings.EllipseAnimationWellPosition, RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
+                                                <SplineDoubleKeyFrame KeyTime="0:0:3" KeySpline="0.4,0,0.6,1" Value="{Binding TemplateSettings.EllipseAnimationEndPosition, RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="E2" Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.167" Value="0"/>
+                                                <SplineDoubleKeyFrame KeyTime="0:0:1.167" KeySpline="0.4,0,0.6,1" Value="{Binding TemplateSettings.EllipseAnimationWellPosition, RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
+                                                <EasingDoubleKeyFrame KeyTime="0:0:2.167" Value="{Binding TemplateSettings.EllipseAnimationWellPosition, RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
+                                                <SplineDoubleKeyFrame KeyTime="0:0:3.167" KeySpline="0.4,0,0.6,1" Value="{Binding TemplateSettings.EllipseAnimationEndPosition, RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="E3" Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.333" Value="0"/>
+                                                <SplineDoubleKeyFrame KeyTime="0:0:1.333" KeySpline="0.4,0,0.6,1" Value="{Binding TemplateSettings.EllipseAnimationWellPosition, RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
+                                                <EasingDoubleKeyFrame KeyTime="0:0:2.333" Value="{Binding TemplateSettings.EllipseAnimationWellPosition, RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
+                                                <SplineDoubleKeyFrame KeyTime="0:0:3.333" KeySpline="0.4,0,0.6,1" Value="{Binding TemplateSettings.EllipseAnimationEndPosition, RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="E4" Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+                                                <SplineDoubleKeyFrame KeyTime="0:0:1.5" KeySpline="0.4,0,0.6,1" Value="{Binding TemplateSettings.EllipseAnimationWellPosition, RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
+                                                <EasingDoubleKeyFrame KeyTime="0:0:2.5" Value="{Binding TemplateSettings.EllipseAnimationWellPosition, RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
+                                                <SplineDoubleKeyFrame KeyTime="0:0:3.5" KeySpline="0.4,0,0.6,1" Value="{Binding TemplateSettings.EllipseAnimationEndPosition, RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="E5" Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.667" Value="0"/>
+                                                <SplineDoubleKeyFrame KeyTime="0:0:1.667" KeySpline="0.4,0,0.6,1" Value="{Binding TemplateSettings.EllipseAnimationWellPosition, RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
+                                                <EasingDoubleKeyFrame KeyTime="0:0:2.667" Value="{Binding TemplateSettings.EllipseAnimationWellPosition, RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
+                                                <SplineDoubleKeyFrame KeyTime="0:0:3.667" KeySpline="0.4,0,0.6,1" Value="{Binding TemplateSettings.EllipseAnimationEndPosition, RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="B1" Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="-50"/>
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+                                                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="0"/>
+                                                <EasingDoubleKeyFrame KeyTime="0:0:3" Value="100"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="B2" Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="-50"/>
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.667" Value="0"/>
+                                                <EasingDoubleKeyFrame KeyTime="0:0:2.167" Value="0"/>
+                                                <EasingDoubleKeyFrame KeyTime="0:0:3.167" Value="100"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="B3" Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="-50"/>
+                                                <EasingDoubleKeyFrame KeyTime="0:0:0.833" Value="0"/>
+                                                <EasingDoubleKeyFrame KeyTime="0:0:2.333" Value="0"/>
+                                                <EasingDoubleKeyFrame KeyTime="0:0:3.333" Value="100"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="B4" Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="-50"/>
+                                                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0"/>
+                                                <EasingDoubleKeyFrame KeyTime="0:0:2.5" Value="0"/>
+                                                <EasingDoubleKeyFrame KeyTime="0:0:3.5" Value="100"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="B5" Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="-50"/>
+                                                <EasingDoubleKeyFrame KeyTime="0:0:1.167" Value="0"/>
+                                                <EasingDoubleKeyFrame KeyTime="0:0:2.667" Value="0"/>
+                                                <EasingDoubleKeyFrame KeyTime="0:0:3.667" Value="100"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimation Duration="0" Storyboard.TargetName="IndeterminateRoot" To="1" Storyboard.TargetProperty="Opacity"/>
+                                            <FadeOutThemeAnimation TargetName="DeterminateRoot"/>
+                                            <DoubleAnimation Duration="0" Storyboard.TargetName="DeterminateRoot" To="0" Storyboard.TargetProperty="Opacity"/>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="E1" Storyboard.TargetProperty="Opacity">
+                                                <DiscreteDoubleKeyFrame KeyTime="0" Value="1"/>
+                                                <DiscreteDoubleKeyFrame KeyTime="0:0:3" Value="0"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="E2" Storyboard.TargetProperty="Opacity">
+                                                <DiscreteDoubleKeyFrame KeyTime="0" Value="0"/>
+                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.167" Value="1"/>
+                                                <DiscreteDoubleKeyFrame KeyTime="0:0:3.167" Value="0"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="E3" Storyboard.TargetProperty="Opacity">
+                                                <DiscreteDoubleKeyFrame KeyTime="0" Value="0"/>
+                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.333" Value="1"/>
+                                                <DiscreteDoubleKeyFrame KeyTime="0:0:3.333" Value="0"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="E4" Storyboard.TargetProperty="Opacity">
+                                                <DiscreteDoubleKeyFrame KeyTime="0" Value="0"/>
+                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
+                                                <DiscreteDoubleKeyFrame KeyTime="0:0:3.5" Value="0"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="E5" Storyboard.TargetProperty="Opacity">
+                                                <DiscreteDoubleKeyFrame KeyTime="0" Value="0"/>
+                                                <DiscreteDoubleKeyFrame KeyTime="0:0:0.667" Value="1"/>
+                                                <DiscreteDoubleKeyFrame KeyTime="0:0:3.667" Value="0"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Error">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ProgressBarIndicator" Storyboard.TargetProperty="Opacity">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="0"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Paused">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ProgressBarIndicator" Storyboard.TargetProperty="Fill">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlForegroundAccentBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <DoubleAnimation Duration="0:0:0.25" Storyboard.TargetName="ProgressBarIndicator" To="{ThemeResource ProgressBarIndicatorPauseOpacity}" Storyboard.TargetProperty="Opacity"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <StackPanel x:Name="IndeterminateRoot" Opacity="0" Orientation="Horizontal" Spacing="{Binding TemplateSettings.EllipseOffset, RelativeSource={RelativeSource Mode=TemplatedParent}}" x:Load="False">
+                                <StackPanel.RenderTransform>
+                                    <TranslateTransform/>
+                                </StackPanel.RenderTransform>
+                                <Border x:Name="B5" RenderTransformOrigin="0.5,0.5">
+                                    <Border.RenderTransform>
+                                        <TranslateTransform/>
+                                    </Border.RenderTransform>
+                                    <Ellipse x:Name="E5" Fill="{TemplateBinding Foreground}" Height="{Binding TemplateSettings.EllipseDiameter, RelativeSource={RelativeSource Mode=TemplatedParent}}" RenderTransformOrigin="0.5,0.5" Width="{Binding TemplateSettings.EllipseDiameter, RelativeSource={RelativeSource Mode=TemplatedParent}}">
+                                        <Ellipse.RenderTransform>
+                                            <TranslateTransform/>
+                                        </Ellipse.RenderTransform>
+                                    </Ellipse>
+                                </Border>
+                                <Border x:Name="B4" RenderTransformOrigin="0.5,0.5">
+                                    <Border.RenderTransform>
+                                        <TranslateTransform/>
+                                    </Border.RenderTransform>
+                                    <Ellipse x:Name="E4" Fill="{TemplateBinding Foreground}" Height="{Binding TemplateSettings.EllipseDiameter, RelativeSource={RelativeSource Mode=TemplatedParent}}" RenderTransformOrigin="0.5,0.5" Width="{Binding TemplateSettings.EllipseDiameter, RelativeSource={RelativeSource Mode=TemplatedParent}}">
+                                        <Ellipse.RenderTransform>
+                                            <TranslateTransform/>
+                                        </Ellipse.RenderTransform>
+                                    </Ellipse>
+                                </Border>
+                                <Border x:Name="B3" RenderTransformOrigin="0.5,0.5">
+                                    <Border.RenderTransform>
+                                        <TranslateTransform/>
+                                    </Border.RenderTransform>
+                                    <Ellipse x:Name="E3" Fill="{TemplateBinding Foreground}" Height="{Binding TemplateSettings.EllipseDiameter, RelativeSource={RelativeSource Mode=TemplatedParent}}" RenderTransformOrigin="0.5,0.5" Width="{Binding TemplateSettings.EllipseDiameter, RelativeSource={RelativeSource Mode=TemplatedParent}}">
+                                        <Ellipse.RenderTransform>
+                                            <TranslateTransform/>
+                                        </Ellipse.RenderTransform>
+                                    </Ellipse>
+                                </Border>
+                                <Border x:Name="B2" RenderTransformOrigin="0.5,0.5">
+                                    <Border.RenderTransform>
+                                        <TranslateTransform/>
+                                    </Border.RenderTransform>
+                                    <Ellipse x:Name="E2" Fill="{TemplateBinding Foreground}" Height="{Binding TemplateSettings.EllipseDiameter, RelativeSource={RelativeSource Mode=TemplatedParent}}" RenderTransformOrigin="0.5,0.5" Width="{Binding TemplateSettings.EllipseDiameter, RelativeSource={RelativeSource Mode=TemplatedParent}}">
+                                        <Ellipse.RenderTransform>
+                                            <TranslateTransform/>
+                                        </Ellipse.RenderTransform>
+                                    </Ellipse>
+                                </Border>
+                                <Border x:Name="B1" Grid.Column="8" RenderTransformOrigin="0.5,0.5">
+                                    <Border.RenderTransform>
+                                        <TranslateTransform/>
+                                    </Border.RenderTransform>
+                                    <Ellipse x:Name="E1" Fill="{TemplateBinding Foreground}" Height="{Binding TemplateSettings.EllipseDiameter, RelativeSource={RelativeSource Mode=TemplatedParent}}" RenderTransformOrigin="0.5,0.5" Width="{Binding TemplateSettings.EllipseDiameter, RelativeSource={RelativeSource Mode=TemplatedParent}}">
+                                        <Ellipse.RenderTransform>
+                                            <TranslateTransform/>
+                                        </Ellipse.RenderTransform>
+                                    </Ellipse>
+                                </Border>
+                            </StackPanel>
+                            <Border x:Name="DeterminateRoot" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding CornerRadius}">
+                                <Rectangle x:Name="ProgressBarIndicator" RadiusX="5" RadiusY="5" Fill="{TemplateBinding Foreground}" HorizontalAlignment="Left"/>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Name="TabViewButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="{ThemeResource TabViewButtonBackground}"/>
+            <Setter Property="Foreground" Value="{ThemeResource TabViewButtonForeground}"/>
+            <Setter Property="FontSize" Value="{ThemeResource TabViewItemAddButtonFontSize}"/>
+            <Setter Property="FontFamily" Value="{ThemeResource SymbolThemeFontFamily}"/>
+            <Setter Property="Width" Value="{ThemeResource TabViewItemAddButtonWidth}"/>
+            <Setter Property="Height" Value="{ThemeResource TabViewItemAddButtonHeight}"/>
+            <Setter Property="BorderThickness" Value="{ThemeResource TabViewButtonBorderThickness}"/>
+            <Setter Property="BorderBrush" Value="{ThemeResource TabViewButtonBorderBrush}"/>
+            <Setter Property="FocusVisualMargin" Value="-3"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <ContentPresenter x:Name="ContentPresenter" AutomationProperties.AccessibilityView="Raw" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" ContentTemplate="{TemplateBinding ContentTemplate}" CornerRadius="{ThemeResource ControlCornerRadius}" Content="{TemplateBinding Content}" ContentTransitions="{TemplateBinding ContentTransitions}" FontFamily="{TemplateBinding FontFamily}" FontWeight="{TemplateBinding FontWeight}" FontSize="{TemplateBinding FontSize}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="PointerOver">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TabViewButtonBackgroundPointerOver}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TabViewButtonForegroundPointerOver}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TabViewButtonBorderBrushPointerOver}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TabViewButtonBackgroundPressed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TabViewButtonForegroundPressed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TabViewButtonBorderBrushPressed}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TabViewButtonBackgroundDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TabViewButtonForegroundDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="ContentPresenter" Storyboard.TargetProperty="BorderBrush">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource TabViewButtonBorderBrushDisabled}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </ContentPresenter>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="CrimsonTabView" TargetType="Custom:TabView">
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Padding" Value="{ThemeResource TabViewHeaderPadding}"/>
+            <Setter Property="IsTabStop" Value="False"/>
+            <Setter Property="Background" Value="{ThemeResource TabViewBackground}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Custom:TabView">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup>
+                                    <VisualState x:Name="NormalBottomBorderLine"/>
+                                    <VisualState x:Name="SingleBottomBorderLine">
+                                        <VisualState.Setters>
+                                            <Setter Target="LeftBottomBorderLine.(Grid.ColumnSpan)" Value="4"/>
+                                            <Setter Target="RightBottomBorderLine.Visibility" Value="Collapsed"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Grid x:Name="TabContainerGrid" Background="{TemplateBinding Background}" XYFocusKeyboardNavigation="Enabled">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition x:Name="LeftContentColumn" MinWidth="2" Width="Auto"/>
+                                    <ColumnDefinition x:Name="TabColumn" Width="Auto"/>
+                                    <ColumnDefinition x:Name="AddButtonColumn" Width="Auto"/>
+                                    <ColumnDefinition x:Name="RightContentColumn" Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Border x:Name="LeftBottomBorderLine" BorderBrush="{ThemeResource TabViewBorderBrush}" BorderThickness="1" Height="1" VerticalAlignment="Bottom"/>
+                                <Border x:Name="RightBottomBorderLine" BorderBrush="{ThemeResource TabViewBorderBrush}" BorderThickness="1" Grid.Column="2" Grid.ColumnSpan="2" Height="1" VerticalAlignment="Bottom"/>
+                                <ContentPresenter x:Name="LeftContentPresenter" ContentTemplate="{TemplateBinding TabStripHeaderTemplate}" Grid.Column="0" Content="{TemplateBinding TabStripHeader}"/>
+                                <primitiveContract7Present:TabViewListView x:Name="TabListView" AllowDrop="{TemplateBinding AllowDropTabs}" CanReorderItems="{TemplateBinding CanReorderTabs}" Grid.Column="1" CanDragItems="{TemplateBinding CanDragTabs}" ItemTemplate="{TemplateBinding TabItemTemplate}" ItemsSource="{TemplateBinding TabItemsSource}" ItemTemplateSelector="{TemplateBinding TabItemTemplateSelector}" Padding="{TemplateBinding Padding}"/>
+                                <Border Grid.Column="2" Padding="{ThemeResource TabViewItemAddButtonContainerPadding}" VerticalAlignment="Bottom" Visibility="{Binding IsAddTabButtonVisible, RelativeSource={RelativeSource Mode=TemplatedParent}}">
+                                    <Button x:Name="AddButton" Command="{TemplateBinding AddTabButtonCommand}" CommandParameter="{TemplateBinding AddTabButtonCommandParameter}" Content="&#xE109;" HorizontalAlignment="Center" HighContrastAdjustment="None" IsTextScaleFactorEnabled="False" Style="{StaticResource TabViewButtonStyle}" VerticalAlignment="Center" FontFamily="{StaticResource CustomFont}" Width="32" Height="26" FontSize="14" Padding="0,0,0,0"/>
+                                </Border>
+                                <ContentPresenter x:Name="RightContentPresenter" ContentTemplate="{TemplateBinding TabStripFooterTemplate}" Grid.Column="3" Content="{TemplateBinding TabStripFooter}" HorizontalAlignment="Stretch"/>
+                            </Grid>
+                            <ContentPresenter x:Name="TabContentPresenter" Background="{ThemeResource TabViewItemHeaderBackgroundSelected}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Grid.Row="1"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+    <Grid SizeChanged="Grid_SizeChanged">
+
+        <Grid x:Name="LunaTheme" Visibility="Collapsed">
+            <Border Background="#FF0056FF"/>
+            <Border CornerRadius="6,6,0,0" Height="39" Margin="2,2,2,0" VerticalAlignment="Top">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF009CFF" Offset="0.021"/>
+                        <GradientStop Color="#FF0056FF" Offset="0.096"/>
+                        <GradientStop Color="#FF004ADC" Offset="0.161"/>
+                        <GradientStop Color="#FF004DE6" Offset="0.755"/>
+                        <GradientStop Color="#FF226DFF" Offset="0.896"/>
+                        <GradientStop Color="#FF004AFF" Offset="0"/>
+                        <GradientStop Color="#FF226DFF" Offset="0.943"/>
+                        <GradientStop Color="#FF0047D0" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <Border CornerRadius="6,6,0,0" HorizontalAlignment="Left" Width="10">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="1,0" StartPoint="0,0">
+                        <GradientStop Color="#BF00027F" Offset="0"/>
+                        <GradientStop Color="#00001337" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <Border CornerRadius="6,6,0,0" HorizontalAlignment="Right" Width="10">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="1,0" StartPoint="0,0">
+                        <GradientStop Color="#BF00027F" Offset="1"/>
+                        <GradientStop Color="#00001337" Offset="0"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <Border CornerRadius="6,6,0,0" Margin="0,100,0,0" MaxHeight="300" VerticalAlignment="Bottom" Height="250">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#00226DFF" Offset="0"/>
+                        <GradientStop Color="#FF000C71" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+            <Grid x:Name="LunaButtons" HorizontalAlignment="Right" VerticalAlignment="Top">
+                <Border BorderBrush="#33FFFFFF" BorderThickness="0,0,0,1" Width="46" Height="33" HorizontalAlignment="Right">
+                    <Border BorderThickness="1,1,1,1" BorderBrush="White">
+                        <Border BorderThickness="1">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0,0" Opacity="0.9">
+                                    <GradientStop Color="#FFFFA28D" Offset="0.113"/>
+                                    <GradientStop Color="#FFB72A00" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Border.BorderBrush>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0,0">
+                                    <GradientStop Color="#FFCE0000"/>
+                                    <GradientStop Color="#FFAD0000" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.BorderBrush>
+                        </Border>
+                    </Border>
+                </Border>
+                <Border BorderBrush="#33FFFFFF" BorderThickness="0,0,0,1" Width="46" Height="33" Margin="0,0,46,0" HorizontalAlignment="Right">
+                    <Border BorderThickness="0,1,0,1" BorderBrush="White">
+                        <Border BorderThickness="1">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0,0" Opacity="0.9">
+                                    <GradientStop Color="#FF51BBFF"/>
+                                    <GradientStop Color="#FF0331BF" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Border.BorderBrush>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0,0">
+                                    <GradientStop Color="#FF0058CE"/>
+                                    <GradientStop Color="#FF001AAD" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.BorderBrush>
+                        </Border>
+                    </Border>
+                </Border>
+                <Border BorderBrush="#33FFFFFF" BorderThickness="1,0,0,1" Width="47" Height="33" CornerRadius="0,0,0,4" Margin="0,0,92,0" HorizontalAlignment="Right">
+                    <Border BorderThickness="1,1,1,1" CornerRadius="0,0,0,3" BorderBrush="White">
+                        <Border BorderThickness="1" CornerRadius="0,0,0,2">
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0,0" Opacity="0.9">
+                                    <GradientStop Color="#FF51BBFF"/>
+                                    <GradientStop Color="#FF0331BF" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <Border.BorderBrush>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0,0">
+                                    <GradientStop Color="#FF0058CE"/>
+                                    <GradientStop Color="#FF001AAD" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Border.BorderBrush>
+                        </Border>
+                    </Border>
+                </Border>
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="AeroBlur"/>
+
+        <Grid x:Name="BackgroundGrid">
+            <Border x:Name="AccentBorder" BorderThickness="0,0,0,0" Visibility="Collapsed" Opacity="0.5">
+                <Border.Background>
+                    <AcrylicBrush TintColor="{ThemeResource SystemAccentColor}" TintOpacity="0.35" FallbackColor="{ThemeResource SystemAccentColor}"/>
+                </Border.Background>
+            </Border>
+        </Grid>
+        <Grid>
+            <Image x:Name="AeroBlue" Source="/Assets/Aero/AeroGlass.png" Margin="-22,0,0,0" Stretch="UniformToFill" Opacity="0.25" MinWidth="1000" MinHeight="1000" Visibility="Collapsed"/>
+            <Border x:Name="AeroShine" BorderThickness="5,0,5,5" Margin="1,0,1,1" Visibility="Collapsed">
+                <Border.BorderBrush>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Transparent"/>
+                        <GradientStop Color="#00BDBDBD" Offset="1"/>
+                        <GradientStop Color="Transparent" Offset="0.111"/>
+                        <GradientStop Color="#CCFFFFFF" Offset="0.262"/>
+                        <GradientStop Color="Transparent" Offset="0.263"/>
+                    </LinearGradientBrush>
+                </Border.BorderBrush>
+            </Border>
+            <Grid x:Name="AeroCorners" Visibility="Collapsed">
+                <Image Height="200" Width="200" Source="/Assets/Aero/AeroCorner.png" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <Image Height="200" Width="200" Source="/Assets/Aero/AeroCorner.png" HorizontalAlignment="Right" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                    <Image.RenderTransform>
+                        <CompositeTransform ScaleX="-1"/>
+                    </Image.RenderTransform>
+                </Image>
+                <Border BorderThickness="1">
+                    <Border.BorderBrush>
+                        <SolidColorBrush Color="#99C5C5C5" Opacity="0.65"/>
+                    </Border.BorderBrush>
+                </Border>
+                <Border BorderBrush="#99585858" BorderThickness="1" Margin="6,39,6,6"/>
+                <Border BorderBrush="#99C5C5C5" BorderThickness="1" Margin="5,38,5,5"/>
+            </Grid>
+            <Custom:TabView Style="{StaticResource CrimsonTabView}" x:FieldModifier="public" x:Name="TabbedView" AddTabButtonClick="TabView_AddTabButtonClick" TabCloseRequested="TabbedView_TabCloseRequested" Loaded="TabbedView_Loaded" SelectionChanged="TabbedView_SelectionChanged" VerticalAlignment="Stretch">
+                <Custom:TabView.Resources>
+                    <ResourceDictionary>
+                        <AcrylicBrush x:Name="TabAcrylicBrush"/>
+                    </ResourceDictionary>
+                </Custom:TabView.Resources>
+                <Custom:TabView.Foreground>
+                    <StaticResource ResourceKey="AppTextBrush"/>
+                </Custom:TabView.Foreground>
+
+                <Custom:TabView.TabStripHeader>
+                    <Grid x:Name="ShellTitlebarInset" Background="Transparent">
+                        <Image Source="/Assets/AppIcons/AppIcon.png" Width="18" Height="18" Margin="12,0,8,0"/>
+                    </Grid>
+                </Custom:TabView.TabStripHeader>
+                <Custom:TabView.TabStripFooter>
+                    <Grid>
+                        <Border x:Name="CustomDragRegion" Background="Transparent" Margin="0,0,184,0"/>
+                        <Button Height="24" Width="32" Style="{StaticResource TabViewButtonStyle}" Background="{x:Null}" CornerRadius="4,4,4,4" FontFamily="{StaticResource CustomFont}" Content="&#xE18C;" Padding="0,0,0,0" Click="Button_Click_13" VerticalAlignment="Top" Margin="4,12,0,0" ToolTipService.ToolTip="Toggle full screen (F11)" BorderThickness="0,0,0,0" BorderBrush="{x:Null}">
+                            <Button.KeyboardAccelerators>
+                                <KeyboardAccelerator IsEnabled="True" Key="F11"/>
+                            </Button.KeyboardAccelerators>
+                        </Button>
+                    </Grid>
+                </Custom:TabView.TabStripFooter>
+            </Custom:TabView>
+        </Grid>
+        <Grid x:Name="AeroButtons" HorizontalAlignment="Right" VerticalAlignment="Top" Visibility="Collapsed">
+            <Border BorderBrush="#99C5C5C5" BorderThickness="0,0,0,1" Width="46" Height="33" HorizontalAlignment="Right">
+                <Border BorderThickness="1,0,1,1">
+                    <Border.BorderBrush>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF976E66"/>
+                            <GradientStop Color="#FF5F261B" Offset="1"/>
+                            <GradientStop Color="#FF86453B" Offset="0.5"/>
+                            <GradientStop Color="#FF782212" Offset="0.501"/>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                    <Border BorderThickness="1">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#E5F57068"/>
+                                <GradientStop Color="#E5D65144" Offset="0.52"/>
+                                <GradientStop Color="#E5B32816" Offset="0.521"/>
+                                <GradientStop Color="#E5CC4125" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Border.BorderBrush>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#BFFFB4B4"/>
+                                <GradientStop Color="#BFFFA5A5" Offset="0.035"/>
+                                <GradientStop Color="#66DA6060" Offset="0.036"/>
+                                <GradientStop Color="#66E47878" Offset="0.515"/>
+                                <GradientStop Color="#66CA524B" Offset="0.516"/>
+                                <GradientStop Color="#66B33933" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.BorderBrush>
+                    </Border>
+                </Border>
+            </Border>
+            <Border BorderBrush="#99C5C5C5" BorderThickness="0,0,0,1" Width="46" Height="33" Margin="0,0,46,0" HorizontalAlignment="Right">
+                <Border BorderThickness="0,0,0,1" BorderBrush="#FF373737">
+                    <Border BorderThickness="1">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.9">
+                                <GradientStop Color="#7FE0E0E0"/>
+                                <GradientStop Color="#7FC3C3C3" Offset="0.52"/>
+                                <GradientStop Color="#3FA0A0A0" Offset="0.521"/>
+                                <GradientStop Color="#3FBBBBBB" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Border.BorderBrush>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#7FFCFCFC"/>
+                                <GradientStop Color="#7FFCFCFC" Offset="0.035"/>
+                                <GradientStop Color="#66EAEAEA" Offset="0.036"/>
+                                <GradientStop Color="#66CCCCCC" Offset="1"/>
+                                <GradientStop Color="#66DEDEDE" Offset="0.515"/>
+                                <GradientStop Color="#66D2D2D2" Offset="0.516"/>
+                            </LinearGradientBrush>
+                        </Border.BorderBrush>
+                    </Border>
+                </Border>
+            </Border>
+            <Border BorderBrush="#99C5C5C5" BorderThickness="1,0,0,1" Width="47" Height="33" CornerRadius="0,0,0,4" Margin="0,0,92,0" HorizontalAlignment="Right">
+                <Border BorderThickness="1,0,1,1" CornerRadius="0,0,0,3" BorderBrush="#FF373737">
+                    <Border BorderThickness="1" CornerRadius="0,0,0,2">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.9">
+                                <GradientStop Color="#7FE0E0E0"/>
+                                <GradientStop Color="#7FC3C3C3" Offset="0.52"/>
+                                <GradientStop Color="#3FA0A0A0" Offset="0.521"/>
+                                <GradientStop Color="#3FBBBBBB" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Border.BorderBrush>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#7FFCFCFC"/>
+                                <GradientStop Color="#7FFCFCFC" Offset="0.035"/>
+                                <GradientStop Color="#66EAEAEA" Offset="0.036"/>
+                                <GradientStop Color="#66CCCCCC" Offset="1"/>
+                                <GradientStop Color="#66DEDEDE" Offset="0.515"/>
+                                <GradientStop Color="#66D2D2D2" Offset="0.516"/>
+                            </LinearGradientBrush>
+                        </Border.BorderBrush>
+                    </Border>
+                </Border>
+            </Border>
+        </Grid>
+        <Button x:Name="CloseWarningFlyoutHost" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Top" Width="0" Height="0" Margin="0,35,0,0">
+            <Button.Flyout>
+                <Flyout>
+                    <Grid HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <TextBlock x:Name="CWFTitle" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" Margin="0,10,0,0" Text="Congratulations!"/>
+                        <TextBlock x:Name="CWFContent" HorizontalAlignment="Center" Margin="0,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="11" Text="You found an easter egg! Take a screenshot and share it with your friends!"/>
+                        <StackPanel Margin="0,80,0,0" Orientation="Horizontal" Spacing="5" VerticalAlignment="Top" HorizontalAlignment="Center">
+                            <Button x:Name="CWFBtn1" Content="These" HorizontalAlignment="Left" Width="75" CharacterSpacing="5"/>
+                            <Button x:Name="CWFBtn2" Content="Buttons" Click="Button_Click_19" HorizontalAlignment="Right" Width="75"/>
+                            <Button x:Name="CWFBtn3" Content="Are" Click="Button_Click_19" HorizontalAlignment="Right" Width="75"/>
+                            <Button x:Name="CWFBtn4" Content="Useless!" Click="Button_Click_19" Width="130"/>
+                        </StackPanel>
+                    </Grid>
+                </Flyout>
+            </Button.Flyout>
+        </Button>
+        <Border x:Name="GetSysThemeBorder" BorderBrush="Black" Visibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+        <IviriusWindowingToolkit:DialogWindowContainer>
+            <IviriusWindowingToolkit:DialogWindow x:Name="SetupCloseBox" Title="Ivirius Text Editor" CloseButtonStyle="Win32" FirstButtonClick="SetupCloseBox_FirstButtonClick" RememberPosition="False" Backdrop="MicaAlt" HasIcon="True" Icon="/Assets/AppIcons/AppIcon.png" d:IsHidden="True">
+                <Grid>
+                    <Image Height="75" Width="75" Source="/Assets/Glyphs/Warning.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,20,0,0"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" Margin="108,35,0,0" Text="Are you sure you want&#xA;to close?"/>
+                </Grid>
+            </IviriusWindowingToolkit:DialogWindow>
+            <IviriusWindowingToolkit:DialogWindow x:Name="CloseWarningBox1" DialogAppWindowWidth="400" RememberPosition="False" PlaySound="True" FirstButtonClick="CloseWarningBox1_FirstButtonClick" Backdrop="MicaAlt" HasIcon="True" Icon="/Assets/AppIcons/AppIcon.png" d:IsHidden="True">
+                <Grid>
+                    <Image HorizontalAlignment="Left" Height="50" Margin="20,25,0,0" VerticalAlignment="Top" Width="50" Source="/Assets/Glyphs/Question.png"/>
+                    <TextBlock x:Name="CWFContent1" TextWrapping="Wrap" FontSize="16" Margin="100,20,25,30" Text="Empty"/>
+                </Grid>
+            </IviriusWindowingToolkit:DialogWindow>
+            <IviriusWindowingToolkit:DialogWindow x:Name="CloseWarningBox2" DialogAppWindowWidth="400" RememberPosition="False" PlaySound="True" FirstButtonClick="CloseWarningBox2_FirstButtonClick" SecondButtonClick="CloseWarningBox2_SecondButtonClick" Backdrop="MicaAlt" HasIcon="True" Icon="/Assets/AppIcons/AppIcon.png" d:IsHidden="True">
+                <Grid>
+                    <Image HorizontalAlignment="Left" Height="50" Margin="20,25,0,0" VerticalAlignment="Top" Width="50" Source="/Assets/Glyphs/Question.png"/>
+                    <TextBlock x:Name="CWFContent2" TextWrapping="Wrap" FontSize="16" Margin="100,20,25,30" Text="Empty"/>
+                </Grid>
+            </IviriusWindowingToolkit:DialogWindow>
+            <IviriusWindowingToolkit:DialogWindow x:Name="CloseWarningBox3" DialogAppWindowWidth="400" RememberPosition="False" PlaySound="True" FirstButtonClick="CloseWarningBox3_FirstButtonClick" SecondButtonClick="CloseWarningBox3_SecondButtonClick" Backdrop="MicaAlt" Icon="/Assets/AppIcons/AppIcon.png" HasIcon="True" d:IsHidden="True">
+                <Grid>
+                    <Image HorizontalAlignment="Left" Height="50" Margin="20,25,0,0" VerticalAlignment="Top" Width="50" Source="/Assets/Glyphs/Question.png"/>
+                    <TextBlock x:Name="CWFContent3" TextWrapping="Wrap" FontSize="16" Margin="100,20,25,30" Text="Empty"/>
+                </Grid>
+            </IviriusWindowingToolkit:DialogWindow>
+        </IviriusWindowingToolkit:DialogWindowContainer>
+    </Grid>
+</Page>

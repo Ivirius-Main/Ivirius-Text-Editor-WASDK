@@ -1,0 +1,170 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows10.0.22621.0</TargetFramework>
+    <LangVersion>9.0</LangVersion>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Ivirius_Text_Editor</RootNamespace>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformMinVersion>10.0.19041.0</TargetPlatformMinVersion>
+    <PackageCertificateThumbprint>A4FEA4DBFE8442DD796CD59C4BC59612050DE20A</PackageCertificateThumbprint>
+    <GenerateTemporaryStoreCertificate>True</GenerateTemporaryStoreCertificate>
+    <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+    <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
+    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
+    <GenerateTestArtifacts>True</GenerateTestArtifacts>
+    <AppxBundle>Always</AppxBundle>
+    <AppxBundlePlatforms>x64</AppxBundlePlatforms>
+    <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
+    <UseWinUI>true</UseWinUI>
+    <Platforms>x86;x64;arm64</Platforms>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
+    <RuntimeIdentifiers>win-x86;win-x64;win-arm64</RuntimeIdentifiers>
+    <PublishProfile>win-$(Platform).pubxml</PublishProfile>
+    <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
+    <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\AppIcons\02.png" />
+    <Content Include="Assets\AppIcons\03.png" />
+    <Content Include="Assets\AppIcons\04.png" />
+    <Content Include="Assets\AppIcons\05.png" />
+    <Content Include="Assets\AppIcons\ActionCompleteGlyph.png" />
+    <Content Include="Assets\AppIcons\ActionErrorGlyph.png" />
+    <Content Include="Assets\AppIcons\ActionInfoGlyph.png" />
+    <Content Include="Assets\AppIcons\ActionWarningGlyph.png" />
+    <Content Include="Assets\Aero\AeroCorner.png" />
+    <Content Include="Assets\Aero\AeroGlass.png" />
+    <Content Include="Assets\Aero\AeroGlassBlue.png" />
+    <Content Include="Assets\AppIcons\AppIcon.png" />
+    <Content Include="Assets\AppIcons\AppLinkIcon.png" />
+    <Content Include="Assets\AppIcons\AppMainIcon.png" />
+    <Content Include="Assets\AppIcons\01.png" />
+    <Content Include="Assets\AppIcons\AppPackIcon.png" />
+    <Content Include="Assets\BadgeLogo.scale-100.png" />
+    <Content Include="Assets\BadgeLogo.scale-125.png" />
+    <Content Include="Assets\BadgeLogo.scale-150.png" />
+    <Content Include="Assets\BadgeLogo.scale-200.png" />
+    <Content Include="Assets\BadgeLogo.scale-400.png" />
+    <Content Include="Assets\FileIcons\RTF.png" />
+    <Content Include="Assets\Glyphs\Changelog.png" />
+    <Content Include="Assets\Glyphs\Check.png" />
+    <Content Include="Assets\Glyphs\Console.png" />
+    <Content Include="Assets\Glyphs\Copy.png" />
+    <Content Include="Assets\Glyphs\Cut.png" />
+    <Content Include="Assets\Glyphs\Delete.png" />
+    <Content Include="Assets\Glyphs\Error.png" />
+    <Content Include="Assets\Glyphs\Home.png" />
+    <Content Include="Assets\Glyphs\Info.png" />
+    <Content Include="Assets\Glyphs\OpenFile.png" />
+    <Content Include="Assets\Glyphs\Paste.png" />
+    <Content Include="Assets\Glyphs\Print.png" />
+    <Content Include="Assets\Glyphs\Question.png" />
+    <Content Include="Assets\Glyphs\Save.png" />
+    <Content Include="Assets\Glyphs\Warning.png" />
+    <Content Include="Assets\LargeTile.scale-100.png" />
+    <Content Include="Assets\LargeTile.scale-125.png" />
+    <Content Include="Assets\LargeTile.scale-150.png" />
+    <Content Include="Assets\LargeTile.scale-200.png" />
+    <Content Include="Assets\LargeTile.scale-400.png" />
+    <Content Include="Assets\ProfilePictures\Ivirius.png" />
+    <Content Include="Assets\ProfilePictures\jpbErrortek.png" />
+    <Content Include="Assets\SetupBanners\AccentBanner.png" />
+    <Content Include="Assets\SetupBanners\AccessibilityBanner.png" />
+    <Content Include="Assets\SetupBanners\ThemeBanner.png" />
+    <Content Include="Assets\SmallTile.scale-100.png" />
+    <Content Include="Assets\SmallTile.scale-125.png" />
+    <Content Include="Assets\SmallTile.scale-150.png" />
+    <Content Include="Assets\SmallTile.scale-200.png" />
+    <Content Include="Assets\SmallTile.scale-400.png" />
+    <Content Include="Assets\SplashScreen.scale-100.png" />
+    <Content Include="Assets\SplashScreen.scale-125.png" />
+    <Content Include="Assets\SplashScreen.scale-150.png" />
+    <Content Include="Assets\SplashScreen.scale-400.png" />
+    <Content Include="Assets\Square150x150Logo.scale-100.png" />
+    <Content Include="Assets\Square150x150Logo.scale-125.png" />
+    <Content Include="Assets\Square150x150Logo.scale-150.png" />
+    <Content Include="Assets\Square150x150Logo.scale-400.png" />
+    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-16.png" />
+    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-24.png" />
+    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-256.png" />
+    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-32.png" />
+    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-48.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-16.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-256.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-32.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-48.png" />
+    <Content Include="Assets\Square44x44Logo.scale-100.png" />
+    <Content Include="Assets\Square44x44Logo.scale-125.png" />
+    <Content Include="Assets\Square44x44Logo.scale-150.png" />
+    <Content Include="Assets\Square44x44Logo.scale-400.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-16.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-256.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-32.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-48.png" />
+    <Content Include="Assets\StoreLogo.scale-100.png" />
+    <Content Include="Assets\StoreLogo.scale-125.png" />
+    <Content Include="Assets\StoreLogo.scale-150.png" />
+    <Content Include="Assets\StoreLogo.scale-200.png" />
+    <Content Include="Assets\StoreLogo.scale-400.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-100.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-125.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-150.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-400.png" />
+    <Content Include="Assets\AppIcons\DateTimeIcon.png" />
+    <Content Include="Assets\AppIcons\ErrorBroken.png" />
+    <Content Include="Assets\AppIcons\ExperimentalEXE.png" />
+    <Content Include="Assets\AppIcons\HubIcon.png" />
+    <Content Include="Assets\AppIcons\ImageIcon.png" />
+    <Content Include="Assets\AppIcons\LegacyFileIcon.png" />
+    <Content Include="Assets\AppIcons\LoginIcon.png" />
+    <Content Include="Assets\AppIcons\PasteIcon.png" />
+    <Content Include="Assets\AppIcons\QuestionGlyph.png" />
+    <None Include="jpbAppCertificate-2024.pfx" />
+    <None Include="Resources\Arrow.cur" />
+    <None Include="Package.StoreAssociation.xml" />
+    <Content Include="Assets\AppIcons\OpenIcon.png" />
+    <Content Include="Assets\AppIcons\PrintIcon.png" />
+    <Content Include="Properties\Default.rd.xml" />
+    <Content Include="Assets\LockScreenLogo.scale-200.png" />
+    <Content Include="Assets\SplashScreen.scale-200.png" />
+    <Content Include="Assets\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Content Include="Assets\AppIcons\SaveIcon.png" />
+    <Content Include="SegoeFluentIcons2.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.WinUI.Controls.Segmented" Version="8.1.240328-rc" />
+    <PackageReference Include="CommunityToolkit.WinUI.Controls.SettingsControls" Version="8.1.240328-rc" />
+    <PackageReference Include="CommunityToolkit.WinUI.Notifications" Version="7.1.2" />
+    <PackageReference Include="CommunityToolkit.WinUI.UI.Controls" Version="7.1.2" />
+    <PackageReference Include="Humanizer.Core">
+      <Version>2.14.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AppCenter.Crashes">
+      <Version>5.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.NETCore.Platforms" Version="8.0.0-preview.7.23375.6" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.5.240428000" />
+    <PackageReference Include="Microsoft.Graphics.Win2D" Version="1.2.0" />
+    <PackageReference Include="Microsoft.Windows.Compatibility" Version="8.0.5" />
+    <PackageReference Include="System.Drawing.Common" Version="8.0.5" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ivirius Text Editor_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Ivirius_Text_Editor\Pages\MainPage.xaml.cs" />
+    <Compile Remove="Ivirius_Text_Editor\Pages\SettingsPage.xaml.cs" />
+    <Compile Remove="Ivirius_Text_Editor\Pages\TabbedMainPage.xaml.cs" />
+  </ItemGroup>
+</Project>
