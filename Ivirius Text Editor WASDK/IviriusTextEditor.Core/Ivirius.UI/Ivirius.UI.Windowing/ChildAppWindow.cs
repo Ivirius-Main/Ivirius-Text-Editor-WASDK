@@ -1008,62 +1008,29 @@ namespace Ivirius.UI.Windowing
 
         private void LBCorner_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
-            (sender as Border).CapturePointer(e.Pointer);
-            lastSizePos = e.GetCurrentPoint(WindowBorder).Position;
-            canResize = true;
-            displayResizer = true;
+            
         }
 
         private void LBCorner_PointerMoved(object sender, PointerRoutedEventArgs e)
         {
-            var Pos = e.GetCurrentPoint(WindowBorder).Position;
-            try
-            {
-                if (e.Pointer.IsInContact == true && canResize == true && IsMaximized == false && IsMaximizeRestoreButtonEnabled == true)
-                {
-                    if (Pos.X + AppWindowWidth >= WindowBorder.Margin.Left)
-                    {
-                        AppWindowWidth -= lastSizePos.X - Pos.X;
-                        lastSizePos.X = Pos.X;
-
-                        TriggerShadow();
-                    }
-                    if (Pos.Y + AppWindowHeight >= WindowBorder.Margin.Top)
-                    {
-                        AppWindowHeight -= lastSizePos.Y - Pos.Y;
-                        lastSizePos.Y = Pos.Y;
-
-                        TriggerShadow();
-                    }
-                }
-            }
-            catch
-            {
-
-            }
+            
         }
 
         private void LBCorner_PointerReleased(object sender, PointerRoutedEventArgs e)
         {
-            (sender as Border).ReleasePointerCapture(e.Pointer);
-            displayResizer = false;
-            if (displayResizer != true) App.Window.CoreWindow.PointerCursor = new CoreCursor(CoreCursorType.Arrow, e.Pointer.PointerId);
-        }
+            }
 
         private void RBCorner_PointerEntered(object sender, PointerRoutedEventArgs e)
         {
-            if (IsMaximizeRestoreButtonEnabled == true && IsMaximized == false) App.Window.CoreWindow.PointerCursor = new CoreCursor(CoreCursorType.SizeNorthwestSoutheast, e.Pointer.PointerId);
         }
 
         private void RBCorner_PointerExited(object sender, PointerRoutedEventArgs e)
         {
-            if (displayResizer != true) App.Window.CoreWindow.PointerCursor = new CoreCursor(CoreCursorType.Arrow, e.Pointer.PointerId);
         }
 
         private void Border_PointerEntered(object sender, PointerRoutedEventArgs e)
         {
-            App.Window.CoreWindow.PointerCursor = new CoreCursor(CoreCursorType.SizeNorthwestSoutheast, e.Pointer.PointerId);
-            canResize = true;
+            
         }
 
         private void PrimaryWindowContent_PointerEntered(object sender, PointerRoutedEventArgs e)
@@ -1293,135 +1260,59 @@ namespace Ivirius.UI.Windowing
 
         private void DSide_PointerMoved(object sender, PointerRoutedEventArgs e)
         {
-            var Pos = e.GetCurrentPoint(WindowBorder).Position;
-            try
-            {
-                if (e.Pointer.IsInContact == true && canResize == true && IsMaximized == false && IsMaximizeRestoreButtonEnabled == true)
-                {
-                    if (Pos.Y + AppWindowHeight >= WindowBorder.Margin.Top)
-                    {
-                        AppWindowHeight -= lastSizePos.Y - Pos.Y;
-                        lastSizePos.Y = Pos.Y;
-
-                        TriggerShadow();
-                    }
-                }
-            }
-            catch
-            {
-
-            }
+            
         }
 
         private void DSide_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
-            (sender as Border).CapturePointer(e.Pointer);
-            lastSizePos = e.GetCurrentPoint(WindowBorder).Position;
-            canResize = true;
-            displayResizer = true;
         }
 
         private void DSide_PointerReleased(object sender, PointerRoutedEventArgs e)
         {
-            (sender as Border).ReleasePointerCapture(e.Pointer);
-            displayResizer = false;
-            if (displayResizer != true) App.Window.CoreWindow.PointerCursor = new CoreCursor(CoreCursorType.Arrow, e.Pointer.PointerId);
-        }
+            }
 
         private void LSide_PointerEntered(object sender, PointerRoutedEventArgs e)
         {
-            if (IsMaximizeRestoreButtonEnabled == true && IsMaximized == false) App.Window.CoreWindow.PointerCursor = new CoreCursor(CoreCursorType.SizeWestEast, e.Pointer.PointerId);
         }
 
         private void LSide_PointerExited(object sender, PointerRoutedEventArgs e)
         {
-            if (displayResizer != true) App.Window.CoreWindow.PointerCursor = new CoreCursor(CoreCursorType.Arrow, e.Pointer.PointerId);
         }
 
         private void LSide_PointerMoved(object sender, PointerRoutedEventArgs e)
         {
-            var Pos = e.GetCurrentPoint(WindowBorder).Position;
-            try
-            {
-                if (e.Pointer.IsInContact == true && canResize == true && IsMaximized == false && IsMaximizeRestoreButtonEnabled == true)
-                {
-                    if (Pos.X < lastSizePos.X + AppWindowWidth - 300)
-                    {
-                        var distance = lastSizePos.X - Pos.X;
-                        AppWindowWidth += distance;
-                        WindowBorder.Margin = new Thickness(WindowBorder.Margin.Left - distance, WindowBorder.Margin.Top, 0, 0);
-
-                        TriggerShadow();
-                    }
-                }
-            }
-            catch
-            {
-
-            }
+            
         }
 
         private void LSide_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
-            (sender as Border).CapturePointer(e.Pointer);
-            lastSizePos = e.GetCurrentPoint(WindowBorder).Position;
-            canResize = true;
-            displayResizer = true;
+           
         }
 
         private void LSide_PointerReleased(object sender, PointerRoutedEventArgs e)
         {
-            (sender as Border).ReleasePointerCapture(e.Pointer);
-            displayResizer = false;
-            if (displayResizer != true) App.Window.CoreWindow.PointerCursor = new CoreCursor(CoreCursorType.Arrow, e.Pointer.PointerId);
-        }
+            }
 
         private void TSide_PointerEntered(object sender, PointerRoutedEventArgs e)
         {
-            if (IsMaximizeRestoreButtonEnabled == true && IsMaximized == false) App.Window.CoreWindow.PointerCursor = new CoreCursor(CoreCursorType.SizeNorthSouth, e.Pointer.PointerId);
         }
 
         private void TSide_PointerExited(object sender, PointerRoutedEventArgs e)
         {
-            if (displayResizer != true) App.Window.CoreWindow.PointerCursor = new CoreCursor(CoreCursorType.Arrow, e.Pointer.PointerId);
         }
 
         private void TSide_PointerMoved(object sender, PointerRoutedEventArgs e)
         {
-            var Pos = e.GetCurrentPoint(WindowBorder).Position;
-            try
-            {
-                if (e.Pointer.IsInContact == true && canResize == true && IsMaximized == false && IsMaximizeRestoreButtonEnabled == true)
-                {
-                    if (Pos.Y < lastSizePos.Y + AppWindowHeight - 225)
-                    {
-                        var distance = lastSizePos.Y - Pos.Y;
-                        AppWindowHeight += distance;
-                        WindowBorder.Margin = new Thickness(WindowBorder.Margin.Left, WindowBorder.Margin.Top - distance, 0, 0);
-
-                        TriggerShadow();
-                    }
-                }
-            }
-            catch
-            {
-
-            }
+            
         }
 
         private void TSide_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
-            (sender as Border).CapturePointer(e.Pointer);
-            lastSizePos = e.GetCurrentPoint(WindowBorder).Position;
-            canResize = true;
-            displayResizer = true;
+           
         }
 
         private void TSide_PointerReleased(object sender, PointerRoutedEventArgs e)
         {
-            (sender as Border).ReleasePointerCapture(e.Pointer);
-            displayResizer = false;
-            if (displayResizer != true) App.Window.CoreWindow.PointerCursor = new CoreCursor(CoreCursorType.Arrow, e.Pointer.PointerId);
-        }
+           }
     }
 }
